@@ -1,8 +1,8 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 from fastapi import status
 
 
-class TestRoutes(ABC):
+class RoutesTest(ABC):
     """
     Base class for route testing so all methods get tested
     """
@@ -13,10 +13,7 @@ class TestRoutes(ABC):
                              status.HTTP_403_FORBIDDEN,
                              }
 
-    @property
-    @abstractmethod
-    def route(self):
-        raise NotImplementedError
+    route: str = NotImplemented
 
     def test_get(self, client):
         response = client.get(self.route)
@@ -39,15 +36,14 @@ class TestRoutes(ABC):
         assert response.status_code in self.not_allowed_responses
 
 
-class TestRoot(TestRoutes):
+class TestRoot(RoutesTest):
     """
-    Test the "" route redirects to docs
+    Test the "/" route redirects to docs
     """
 
-    route = ""
+    route = "/"
 
     def test_get(self, client):
         response = client.get(self.route)
-        assert response.status_code is status.HTTP_301_MOVED_PERMANENTLY
-        assert "/docs" in response.url
-
+        assert response.status_code is status.HTTP_200_OK
+        assert "/docs" in str(response.url)

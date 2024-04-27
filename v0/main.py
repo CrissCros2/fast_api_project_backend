@@ -5,9 +5,9 @@ from fastapi import status
 app = FastAPI()
 
 
-@app.get("/", status_code=status.HTTP_301_MOVED_PERMANENTLY)
+@app.get("/")
 async def root():
     """
     Redirects the user to the docs page
     """
-    return RedirectResponse("/docs")
+    return RedirectResponse(url="/docs")
