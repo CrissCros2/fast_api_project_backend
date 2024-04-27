@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from starlette import status
-from uuid import uuid4
+from uuid import uuid4, UUID
 from datetime import datetime
 
 from api_models import Event
@@ -24,3 +24,11 @@ async def create_event(event: Event) -> Event:
     Create event in database
     """
     return event
+
+
+@events.get("/{event_id}")
+async def get_event(event_id: UUID) -> Event:
+    """
+    Get individual event by event_id
+    """
+    return Event(id=uuid4(), title="blah", description="blah", time=datetime.now(), attendees=[])

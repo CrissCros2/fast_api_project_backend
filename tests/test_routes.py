@@ -61,10 +61,28 @@ class TestEventsRoot(RoutesTest):
     def test_get(self, client):
         response = client.get(self.route)
         assert response.json()
-        assert response.status_code == status.HTTP_200_OK
+        assert response.status_code is status.HTTP_200_OK
 
     def test_post(self, client):
         data = {"id": uuid4().hex, "title": "blah", "description": "blah", "time": str(datetime.now()), "attendees": []}
         response = client.post(self.route, json=data)
         assert response.json()
-        assert response.status_code == status.HTTP_201_CREATED
+        assert response.status_code is status.HTTP_201_CREATED
+
+
+class TestEventsByID(RoutesTest):
+    """
+    Test the "/events/{event_id} route
+    """
+
+    route = f"/events/{uuid4()}"
+
+    def test_get(self, client):
+        response = client.get(self.route)
+        assert response.status_code is status.HTTP_200_OK
+        assert response.json()
+
+    def test_put(self, client):
+        data = {"id": uuid4().hex, "title": "blah", "description": "blah", "time": str(datetime.now()), "attendees": []}
+        response = client.put(self.route, json=data)
+        assert response.status_code is status.HTTP_200_OK
