@@ -105,3 +105,19 @@ class TestEventsByID(RoutesTest):
         data = {"id": uuid4().hex, "title": "blah", "description": "blah", "time": str(datetime.now()), "attendees": []}
         response = client.put(self.route, json=data)
         assert response.status_code is status.HTTP_200_OK
+
+    def test_delete(self, client):
+        response = client.delete(self.route)
+        assert response.status_code is status.HTTP_200_OK
+
+
+class TestCancelEvent(RoutesTest):
+    """
+    Test "/events/{event_id}/cancel" route
+    """
+
+    route = f"/events/{uuid4()}/cancel"
+
+    def test_patch(self, client):
+        response = client.patch(self.route)
+        assert response.status_code is status.HTTP_200_OK

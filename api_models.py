@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from datetime import datetime
 from uuid import UUID
+from typing import Optional
 
 
 class Person(BaseModel):
@@ -11,6 +12,11 @@ class Person(BaseModel):
 class Event(BaseModel):
     id: UUID
     title: str
-    description: str
+    description: str = ""
     time: datetime
     attendees: list[Person]
+    cancelled: bool = False
+
+
+class EventOptional(Event):
+    __annotations__ = {k: Optional[v] for k, v in Event.__annotations__.items()}

@@ -3,7 +3,7 @@ from starlette import status
 from uuid import uuid4, UUID
 from datetime import datetime
 
-from api_models import Event
+from api_models import Event, EventOptional
 
 
 events = APIRouter()
@@ -40,3 +40,19 @@ async def update_event(event_id: UUID, event: Event) -> Event:
     Update individual event by event_id
     """
     return event
+
+
+@events.delete("/{event_id}", status_code=status.HTTP_200_OK)
+async def delete_event(event_id: UUID) -> None:
+    """
+    Update individual event by event_id
+    """
+    return
+
+
+@events.patch("/{event_id}/cancel", status_code=status.HTTP_200_OK)
+async def cancel_event(event_id: UUID) -> None:
+    """
+    Cancel an event
+    """
+    return
