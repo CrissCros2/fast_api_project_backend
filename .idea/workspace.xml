@@ -4,18 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdba0ebb-582f-4159-98da-52eb8b829cbd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/fastApiProject.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Python_tests_in_tests.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="cdba0ebb-582f-4159-98da-52eb8b829cbd" name="Changes" comment="Remove router file was unecessary">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v0/events.py" beforeDir="false" afterPath="$PROJECT_DIR$/v0/events.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v0/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/v0/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,9 +30,10 @@
     "Python tests.Python tests in tests (1).executor": "Run",
     "Python tests.Python tests in tests.executor": "Run",
     "Python tests.pytest in test_routes.py.executor": "Run",
-    "Python tests.pytest in tests.executor": "Debug",
+    "Python tests.pytest in tests.executor": "Run",
     "Python.run.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -52,7 +44,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.run">
+  <component name="RunManager" selected="Python tests.pytest in test_routes.py">
     <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="fast_api_project" />
       <option name="ENV_FILES" value="" />
@@ -169,9 +161,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.run" />
         <item itemvalue="Python tests.pytest in test_routes.py" />
         <item itemvalue="Python tests.pytest in tests" />
+        <item itemvalue="Python.run" />
         <item itemvalue="Python tests.Pytest" />
         <item itemvalue="Python tests.Python tests in tests" />
       </list>
@@ -193,17 +185,30 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714239959508</updated>
-      <workItem from="1714239960974" duration="1334000" />
+      <workItem from="1714239960974" duration="1541000" />
     </task>
+    <task id="LOCAL-00001" summary="Remove router file was unecessary">
+      <option name="closed" value="true" />
+      <created>1714241355254</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1714241355254</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Remove router file was unecessary" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove router file was unecessary" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/fast_api_project$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1714240915532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/fast_api_project$pytest_in_test_routes_py.coverage" NAME="pytest in test_routes.py Coverage Results" MODIFIED="1714241156070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/fast_api_project$run.coverage" NAME="run Coverage Results" MODIFIED="1714241251378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/fast_api_project$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1714241357024" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/fast_api_project$pytest_in_test_routes_py.coverage" NAME="pytest in test_routes.py Coverage Results" MODIFIED="1714241498782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/fast_api_project$run.coverage" NAME="run Coverage Results" MODIFIED="1714241313208" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fast_api_project$.coverage" NAME=" Coverage Results" MODIFIED="1714240310107" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
 </project>
