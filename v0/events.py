@@ -32,3 +32,11 @@ async def get_event(event_id: UUID) -> Event:
     Get individual event by event_id
     """
     return Event(id=uuid4(), title="blah", description="blah", time=datetime.now(), attendees=[])
+
+
+@events.put("/{event_id}", status_code=status.HTTP_200_OK)
+async def update_event(event_id: UUID, event: Event) -> Event:
+    """
+    Update individual event by event_id
+    """
+    return event
