@@ -1,0 +1,23 @@
+[project]
+name = "fast-api-event-system"
+version = "0.0.1alpha"
+requires-python = ">=3.10"
+authors = [
+    {name = "Christopher Roberts"}
+]
+description = "Test project for fast api learning"
+
+[tool.pytest.ini_options]
+addopts = "--cov=. --cov-report html --cov-report term-missing --cov-fail-under=95"
+
+[tool.coverage.run]
+omit = [
+    "tests/*",
+    "run.py",
+    "api_router.py",
+]
+
+[tool.coverage.report]
+exclude_also = [
+    'if __name__ == "__main__":'
+]

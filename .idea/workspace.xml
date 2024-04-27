@@ -4,16 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ffc95095-1680-4a72-9811-9d3f96447baf" name="Changes" comment="Add basic test framework">
-      <change beforePath="$PROJECT_DIR$/.idea/fastApiProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fastApiProject.iml" afterDir="false" />
+    <list default="true" id="ffc95095-1680-4a72-9811-9d3f96447baf" name="Changes" comment="Fix test framework">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Python_tests_in_tests.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v0/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v0/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/v0/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v0/events.py" beforeDir="false" afterPath="$PROJECT_DIR$/v0/events.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="0" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -41,15 +46,25 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "FastAPI.fastApiProject.executor": "Run",
+    "Python tests.Pytest.executor": "Coverage",
+    "Python tests.Python tests for test_routes.RoutesTest.test_patch.executor": "Run",
+    "Python tests.Python tests for test_routes.TestRoot.test_get.executor": "Run",
+    "Python tests.Python tests in tests (1).executor": "Run",
+    "Python tests.Python tests in tests (2).executor": "Run",
+    "Python tests.Python tests in tests (3).executor": "Run",
     "Python tests.Python tests in tests.executor": "Run",
+    "Python tests.Tests.executor": "Run",
+    "Python tests.pytest in tests.executor": "Coverage",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/chris/OneDrive/Desktop/python/fast_api_project/fastApiProject/v0/main.py",
+    "last_opened_file_path": "C:/Users/chris/OneDrive/Desktop/python/fast_api_project/fastApiProject",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "org.intellij.featuresSuggester.FeatureSuggesterConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -59,21 +74,24 @@
       <recent name="C:\Users\chris\OneDrive\Desktop\python\fast_api_project\fastApiProject\v0" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests in tests">
-    <configuration name="fastApiProject" type="Python.FastAPI">
-      <option name="file" value="C:\Users\chris\OneDrive\Desktop\python\fast_api_project\fastApiProject\v0\main.py" />
+  <component name="RunManager" selected="Python tests.pytest in tests">
+    <configuration name="Pytest" type="tests" factoryName="py.test">
       <module name="fastApiProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="$PROJECT_DIR$/.venv/Scripts/python.exe" />
+      <option name="SDK_HOME" value="" />
       <option name="SDK_NAME" value="Python 3.12 (fastApiProject)" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\chris\OneDrive\Desktop\python\fast_api_project\fastApiProject" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;tests&quot;" />
+      <option name="_new_target" value="&quot;pytest&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Python tests in tests" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
@@ -87,13 +105,52 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;--cov-report term-missing --cov-report html --cov\u003d/tests&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests in tests" type="tests" factoryName="Autodetect" temporary="true">
+      <module name="fastApiProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\chris\OneDrive\Desktop\python\fast_api_project\fastApiProject" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;C:\\Users\\chris\\OneDrive\\Desktop\\python\\fast_api_project\\fastApiProject&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in tests" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="fastApiProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;$PROJECT_DIR$/tests&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python tests.Pytest" />
+      <item itemvalue="Python tests.pytest in tests" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest in tests" />
         <item itemvalue="Python tests.Python tests in tests" />
       </list>
     </recent_temporary>
@@ -115,7 +172,7 @@
       <option name="presentableId" value="Default" />
       <updated>1714213673613</updated>
       <workItem from="1714213673978" duration="58000" />
-      <workItem from="1714213741747" duration="4526000" />
+      <workItem from="1714213741747" duration="9036000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -173,7 +230,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714216858290</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fix test framework">
+      <option name="closed" value="true" />
+      <created>1714218331754</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1714218331754</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,10 +263,14 @@
     <MESSAGE value="Add root redirect to docs for now" />
     <MESSAGE value="Add run script to simplify boot process" />
     <MESSAGE value="Add basic test framework" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add basic test framework" />
+    <MESSAGE value="Fix test framework" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix test framework" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/fastApiProject$Tests.coverage" NAME="Pytest Coverage Results" MODIFIED="1714221653278" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\chris\OneDrive\Desktop\python\fast_api_project\fastApiProject" />
+    <SUITE FILE_PATH="../../../../OneDrive/Desktop/python/fast_api_project/fastApiProject/tests/.coverage" NAME=".coverage" MODIFIED="1714218751097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/fastApiProject$fastApiProject.coverage" NAME="fastApiProject Coverage Results" MODIFIED="1714216789612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/fastApiProject$.coverage" NAME=" Coverage Results" MODIFIED="1714218307704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/fastApiProject$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1714221704997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/fastApiProject$.coverage" NAME=" Coverage Results" MODIFIED="1714220043004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
 </project>
