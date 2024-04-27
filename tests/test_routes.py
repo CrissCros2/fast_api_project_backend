@@ -1,5 +1,7 @@
 from abc import ABC
 from fastapi import status
+from uuid import uuid4
+from datetime import datetime
 
 
 class RoutesTest(ABC):
@@ -59,3 +61,8 @@ class TestEventsRoot(RoutesTest):
     def test_get(self, client):
         response = client.get(self.route)
         assert response.json(), response.status_code is status.HTTP_200_OK
+
+    def test_post(self, client):
+        data = {"id": uuid4().hex, "title": "blah", "description": "blah", "time": str(datetime.now()), "attendees": []}
+        response = client.post(self.route, json=data)
+        assert response.json(), response.status_code is status.HTTP_201_CREATED
