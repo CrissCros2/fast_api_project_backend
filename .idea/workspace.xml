@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ffc95095-1680-4a72-9811-9d3f96447baf" name="Changes" comment="Add models for events and people">
-      <change afterPath="$PROJECT_DIR$/events.py" afterDir="false" />
+    <list default="true" id="ffc95095-1680-4a72-9811-9d3f96447baf" name="Changes" comment="Refactoring">
+      <change afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v0/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/v0/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,15 +32,19 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2fgD92rYiCzZGPZjBiez4fTyJ4Q" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "FastAPI.fastApiProject.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/chris/OneDrive/Desktop/python/fast_api_project/fastApiProject/v0/main.py",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -50,16 +56,18 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\chris\OneDrive\Desktop\python\fast_api_project\fastApiProject" />
+      <recent name="C:\Users\chris\OneDrive\Desktop\python\fast_api_project\fastApiProject\v0" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="fastApiProject" type="Python.FastAPI">
-      <option name="file" value="$PROJECT_DIR$/main.py" />
+      <option name="file" value="C:\Users\chris\OneDrive\Desktop\python\fast_api_project\fastApiProject\v0\main.py" />
       <module name="fastApiProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/.venv/Scripts/python.exe" />
+      <option name="SDK_NAME" value="Python 3.12 (fastApiProject)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -86,7 +94,7 @@
       <option name="presentableId" value="Default" />
       <updated>1714213673613</updated>
       <workItem from="1714213673978" duration="58000" />
-      <workItem from="1714213741747" duration="1138000" />
+      <workItem from="1714213741747" duration="3038000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -104,7 +112,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714214662875</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add routers">
+      <option name="closed" value="true" />
+      <created>1714214939856</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1714214939856</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Refactoring">
+      <option name="closed" value="true" />
+      <created>1714215028374</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1714215028374</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -113,6 +137,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Add models for events and people" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add models for events and people" />
+    <MESSAGE value="Add routers" />
+    <MESSAGE value="Refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/fastApiProject$fastApiProject.coverage" NAME="fastApiProject Coverage Results" MODIFIED="1714216789612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
