@@ -51,10 +51,10 @@ class TestRoot(RoutesTest):
 
 class TestEventsRoot(RoutesTest):
     """
-    Test the "/events" route
+    Test the "/events/" route
     """
 
-    route = "/events"
+    route = "/events/"
 
     def test_get(self, client):
         response = client.get(self.route)
