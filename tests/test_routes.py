@@ -51,6 +51,25 @@ class TestRoot(RoutesTest):
         assert "/docs" in str(response.url)
 
 
+class TestPersonsRoot(RoutesTest):
+    """
+    Test the "/persons/" rout
+    """
+
+    route = "/persons/"
+
+    def test_get(self, client):
+        response = client.get(self.route)
+        assert response.status_code is status.HTTP_200_OK
+        assert response.json()
+
+    def test_post(self, client):
+        data = {"id": uuid4().hex, "name": "blah"}
+        response = client.post(self.route, json=data)
+        assert response.json()
+        assert response.status_code is status.HTTP_201_CREATED
+
+
 class TestEventsRoot(RoutesTest):
     """
     Test the "/events/" route
