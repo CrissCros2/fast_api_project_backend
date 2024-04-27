@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdba0ebb-582f-4159-98da-52eb8b829cbd" name="Changes" comment="Add create person method">
+    <list default="true" id="cdba0ebb-582f-4159-98da-52eb8b829cbd" name="Changes" comment="Add more tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v0/events.py" beforeDir="false" afterPath="$PROJECT_DIR$/v0/events.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +40,7 @@
   "keyToString": {
     "Python tests.Python tests in tests (1).executor": "Run",
     "Python tests.Python tests in tests.executor": "Run",
-    "Python tests.pytest in test_routes.py.executor": "Run",
+    "Python tests.pytest in test_routes.py.executor": "Coverage",
     "Python tests.pytest in tests.executor": "Run",
     "Python.run.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -173,8 +172,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest in test_routes.py" />
         <item itemvalue="Python tests.pytest in tests" />
+        <item itemvalue="Python tests.pytest in test_routes.py" />
         <item itemvalue="Python.run" />
         <item itemvalue="Python tests.Pytest" />
         <item itemvalue="Python tests.Python tests in tests" />
@@ -197,7 +196,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714239959508</updated>
-      <workItem from="1714239960974" duration="4232000" />
+      <workItem from="1714239960974" duration="4425000" />
     </task>
     <task id="LOCAL-00001" summary="Remove router file was unecessary">
       <option name="closed" value="true" />
@@ -255,7 +254,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714243336864</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add more tests">
+      <option name="closed" value="true" />
+      <created>1714244268371</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1714244268371</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,11 +276,12 @@
     <MESSAGE value="Add persons" />
     <MESSAGE value="Add get all persons" />
     <MESSAGE value="Add create person method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add create person method" />
+    <MESSAGE value="Add more tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add more tests" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/fast_api_project$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1714243331978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/fast_api_project$pytest_in_test_routes_py.coverage" NAME="pytest in test_routes.py Coverage Results" MODIFIED="1714244209235" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/fast_api_project$pytest_in_test_routes_py.coverage" NAME="pytest in test_routes.py Coverage Results" MODIFIED="1714244251881" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/fast_api_project$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1714244269369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/fast_api_project$run.coverage" NAME="run Coverage Results" MODIFIED="1714241313208" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fast_api_project$.coverage" NAME=" Coverage Results" MODIFIED="1714240310107" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
