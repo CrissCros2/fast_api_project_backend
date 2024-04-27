@@ -47,3 +47,15 @@ class TestRoot(RoutesTest):
         response = client.get(self.route)
         assert response.status_code is status.HTTP_200_OK
         assert "/docs" in str(response.url)
+
+
+class TestEventsRoot(RoutesTest):
+    """
+    Test the "/events" route
+    """
+
+    route = "/events"
+
+    def test_get(self, client):
+        response = client.get(self.route)
+        assert response.json(), response.status_code is status.HTTP_200_OK

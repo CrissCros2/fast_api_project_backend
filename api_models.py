@@ -8,7 +8,7 @@ class Person(BaseModel):
     name: str
 
 
-class Task(BaseModel):
+class Event(BaseModel):
     id: UUID
     title: str
     description: str
