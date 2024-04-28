@@ -25,5 +25,4 @@ starlette==0.37.2
 typing_extensions==4.11.0
 uvicorn==0.29.0
 pre-commit==3.7.0
-�
 pytest-cov==5.0.0
