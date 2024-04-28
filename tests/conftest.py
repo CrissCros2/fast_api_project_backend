@@ -1,16 +1,15 @@
+from uuid import UUID
+
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy.orm import Session
-from uuid import uuid4, UUID
-
-from db import get_db
-from v0.main import app
-
 from sqlalchemy import create_engine, Engine
+from sqlalchemy.orm import Session
 from sqlalchemy.pool import StaticPool
 
+from db import get_db
 from db import sessionmaker, Base
 from db_models import PersonTable
+from v0.main import app
 
 
 @pytest.fixture(scope="session")

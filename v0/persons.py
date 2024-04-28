@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Depends, HTTPException
+from uuid import UUID
+
+from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 from starlette import status
-from uuid import UUID
-from typing import Union
 
 from api_models import Person
 from crud import PersonCRUD

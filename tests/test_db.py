@@ -1,9 +1,11 @@
-from crud import CRUD
+from uuid import uuid4
+
+import pytest
 from fastapi import Depends
 from sqlalchemy.orm import Session
+
+from crud import CRUD
 from db import get_db
-import pytest
-from uuid import uuid4
 
 """
 Tests to verify the CRUD base class raises not implemented errors
