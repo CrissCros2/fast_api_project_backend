@@ -1,10 +1,10 @@
+from datetime import datetime
+from uuid import uuid4, UUID
+
 from fastapi import APIRouter
 from starlette import status
-from uuid import uuid4, UUID
-from datetime import datetime
 
 from api_models import Event
-
 
 events = APIRouter()
 

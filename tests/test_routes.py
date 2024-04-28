@@ -1,7 +1,8 @@
 from abc import ABC
-from fastapi import status
-from uuid import uuid4
 from datetime import datetime
+from uuid import uuid4
+
+from fastapi import status
 
 
 class RoutesTest(ABC):

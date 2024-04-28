@@ -1,13 +1,10 @@
-from fastapi import APIRouter, Depends, HTTPException
-from uuid import uuid4
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-
 from starlette import status
 
 from api_models import Person
-from db import get_db
 from crud import PersonCRUD
-
+from db import get_db
 
 persons = APIRouter()
 

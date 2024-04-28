@@ -1,7 +1,9 @@
-from sqlalchemy.orm import Session
 from abc import ABC
 from uuid import UUID, uuid4
-from db_models import PersonTable, EventTable
+
+from sqlalchemy.orm import Session
+
+from db_models import PersonTable
 
 
 class CRUD(ABC):

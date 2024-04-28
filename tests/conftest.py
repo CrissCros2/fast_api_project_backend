@@ -1,10 +1,12 @@
+from uuid import uuid4
+
 import pytest
 from fastapi.testclient import TestClient
-from v0.main import app
-from db import sessionmaker, get_db, Base
 from sqlalchemy import create_engine
 from sqlalchemy.pool import StaticPool
-from uuid import uuid4
+
+from db import sessionmaker, get_db, Base
+from v0.main import app
 
 
 @pytest.fixture(scope="session")
@@ -14,7 +16,7 @@ def client():
 
 
 def init_database():
-    from db_models import EventTable, PersonTable
+    from db_models import PersonTable
     engine = create_engine(
         "sqlite:///:memory:",
         connect_args={"check_same_thread": False},
