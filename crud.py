@@ -53,4 +53,9 @@ class PersonCRUD(CRUD):
     @classmethod
     def delete_by_id(cls, db: Session, row_id: UUID):
         # noinspection PyTypeChecker
-        return db.query(PersonTable).filter(PersonTable.id == row_id).delete()
+        db_person = db.query(PersonTable).filter(PersonTable.id == row_id).first()
+        if db_person:
+            # noinspection PyTypeChecker
+            db.query(PersonTable).filter(PersonTable.id == row_id).delete()
+            return db_person
+        return None

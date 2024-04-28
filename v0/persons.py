@@ -36,8 +36,21 @@ async def get_person(person_id: UUID, db: Session = Depends(get_db)):
     db_person = PersonCRUD.read_by_id(db, person_id)
     if db_person:
         return db_person
-    else:
-        return JSONResponse(
-            status_code=status.HTTP_404_NOT_FOUND,
-            content={"detail": "Person not found"},
-        )
+    return JSONResponse(
+        status_code=status.HTTP_404_NOT_FOUND,
+        content={"detail": "Person not found"},
+    )
+
+
+@persons.delete("/{person_id}")
+async def delete_person(person_id: UUID, db: Session = Depends(get_db)):
+    """
+    Delete a person
+    """
+    db_person = PersonCRUD.delete_by_id(db, person_id)
+    if db_person:
+        return db_person
+    return JSONResponse(
+        status_code=status.HTTP_404_NOT_FOUND,
+        content={"detail": "Person not found"},
+    )

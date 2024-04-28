@@ -153,6 +153,10 @@ class TestPersonByIDExists(RoutesTest):
 
     def test_delete(self, client):
         response = client.delete(self.route)
+        assert response.status_code is status.HTTP_200_OK
+        person = Person(**response.json())
+        assert person.name == "Person1"
+        assert person.id == UUID("e1a0bcb9-6827-41bf-9888-fbed5dc9e9bb")
 
 
 class TestPersonByIDNotExists(RoutesTest):
@@ -164,3 +168,4 @@ class TestPersonByIDNotExists(RoutesTest):
 
     def test_delete(self, client):
         response = client.delete(self.route)
+        assert response.status_code is status.HTTP_404_NOT_FOUND
