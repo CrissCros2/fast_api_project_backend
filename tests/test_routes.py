@@ -1,8 +1,10 @@
 from abc import ABC
 from datetime import datetime
-from uuid import uuid4
+from uuid import uuid4, UUID
 
 from fastapi import status
+
+from api_models import Person
 
 
 class RoutesTest(ABC):
@@ -138,11 +140,27 @@ class TestCancelEvent(RoutesTest):
         assert response.status_code is status.HTTP_200_OK
 
 
-class TestPersonByID(RoutesTest):
+class TestPersonByIDExists(RoutesTest):
 
-    route = f"/persons/e1a0bcb9-6827-41bf-9888-fbed5dc9e9bb"
+    route = "/persons/e1a0bcb9-6827-41bf-9888-fbed5dc9e9bb"
 
     def test_get(self, client):
         response = client.get(self.route)
         assert response.status_code is status.HTTP_200_OK
-        assert response.json()
+        person = Person(**response.json())
+        assert person.name == "Person1"
+        assert person.id == UUID("e1a0bcb9-6827-41bf-9888-fbed5dc9e9bb")
+
+    def test_delete(self, client):
+        response = client.delete(self.route)
+
+
+class TestPersonByIDNotExists(RoutesTest):
+    route = f"/persons/{uuid4()}"
+
+    def test_get(self, client):
+        response = client.get(self.route)
+        assert response.status_code is status.HTTP_404_NOT_FOUND
+
+    def test_delete(self, client):
+        response = client.delete(self.route)
