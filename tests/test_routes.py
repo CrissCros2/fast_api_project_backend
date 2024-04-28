@@ -65,7 +65,7 @@ class TestPersonsRoot(RoutesTest):
 
     def test_post(self, client):
         data = {"name": "blah"}
-        response = client.post(self.route, json=data)
+        response = client.post(f"{self.route}?person_name=chris", json=data)
         assert response.json()
         assert response.status_code is status.HTTP_201_CREATED
 
