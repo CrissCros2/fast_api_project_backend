@@ -15,7 +15,15 @@ async def get_all_events() -> list[Event]:
     Access the database and get the list of all events
     """
     # For now returns a single event
-    return [Event(id=uuid4(), title="blah", description="blah", time=datetime.now(), attendees=[])]
+    return [
+        Event(
+            id=uuid4(),
+            title="blah",
+            description="blah",
+            time=datetime.now(),
+            attendees=[],
+        )
+    ]
 
 
 @events.post("/", status_code=status.HTTP_201_CREATED)
@@ -31,7 +39,9 @@ async def get_event(event_id: UUID) -> Event:
     """
     Get individual event by event_id
     """
-    return Event(id=uuid4(), title="blah", description="blah", time=datetime.now(), attendees=[])
+    return Event(
+        id=uuid4(), title="blah", description="blah", time=datetime.now(), attendees=[]
+    )
 
 
 @events.put("/{event_id}", status_code=status.HTTP_200_OK)

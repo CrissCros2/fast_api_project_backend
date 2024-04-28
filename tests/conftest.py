@@ -17,6 +17,7 @@ def client():
 
 def init_database():
     from db_models import PersonTable
+
     engine = create_engine(
         "sqlite:///:memory:",
         connect_args={"check_same_thread": False},

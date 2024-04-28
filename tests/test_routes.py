@@ -9,12 +9,14 @@ class RoutesTest(ABC):
     """
     Base class for route testing so all methods get tested
     """
-    not_allowed_responses = {status.HTTP_405_METHOD_NOT_ALLOWED,
-                             status.HTTP_404_NOT_FOUND,
-                             status.HTTP_406_NOT_ACCEPTABLE,
-                             status.HTTP_401_UNAUTHORIZED,
-                             status.HTTP_403_FORBIDDEN,
-                             }
+
+    not_allowed_responses = {
+        status.HTTP_405_METHOD_NOT_ALLOWED,
+        status.HTTP_404_NOT_FOUND,
+        status.HTTP_406_NOT_ACCEPTABLE,
+        status.HTTP_401_UNAUTHORIZED,
+        status.HTTP_403_FORBIDDEN,
+    }
 
     route: str = NotImplemented
 
@@ -84,7 +86,13 @@ class TestEventsRoot(RoutesTest):
         assert response.status_code is status.HTTP_200_OK
 
     def test_post(self, client):
-        data = {"id": uuid4().hex, "title": "blah", "description": "blah", "time": str(datetime.now()), "attendees": []}
+        data = {
+            "id": uuid4().hex,
+            "title": "blah",
+            "description": "blah",
+            "time": str(datetime.now()),
+            "attendees": [],
+        }
         response = client.post(self.route, json=data)
         assert response.json()
         assert response.status_code is status.HTTP_201_CREATED
@@ -103,7 +111,13 @@ class TestEventsByID(RoutesTest):
         assert response.json()
 
     def test_put(self, client):
-        data = {"id": uuid4().hex, "title": "blah", "description": "blah", "time": str(datetime.now()), "attendees": []}
+        data = {
+            "id": uuid4().hex,
+            "title": "blah",
+            "description": "blah",
+            "time": str(datetime.now()),
+            "attendees": [],
+        }
         response = client.put(self.route, json=data)
         assert response.status_code is status.HTTP_200_OK
 
