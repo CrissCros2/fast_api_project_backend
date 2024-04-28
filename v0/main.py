@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from v0.events import events as events_router
-from v0.persons import  persons as persons_router
+from v0.persons import persons as persons_router
+from db import engine, Base
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 app.include_router(events_router, prefix="/events", tags=["events"])
