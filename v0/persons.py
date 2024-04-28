@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from starlette import status
+from uuid import UUID
 
 from api_models import Person
 from crud import PersonCRUD
@@ -23,3 +24,12 @@ def create_person(person_name: str, db: Session = Depends(get_db)):
     Create a new person
     """
     return PersonCRUD.create(db, person_name)
+
+
+@persons.get("/{person_id}")
+def get_person(person_id: UUID, db: Session = Depends(get_db)):
+    """
+    Get a person
+    """
+    test = PersonCRUD.read_by_id(db, person_id)
+    return PersonCRUD.read_by_id(db, person_id)

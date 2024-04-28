@@ -136,3 +136,13 @@ class TestCancelEvent(RoutesTest):
     def test_patch(self, client):
         response = client.patch(self.route)
         assert response.status_code is status.HTTP_200_OK
+
+
+class TestPersonByID(RoutesTest):
+
+    route = f"/persons/e1a0bcb9-6827-41bf-9888-fbed5dc9e9bb"
+
+    def test_get(self, client):
+        response = client.get(self.route)
+        assert response.status_code is status.HTTP_200_OK
+        assert response.json()
