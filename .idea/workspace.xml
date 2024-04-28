@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdba0ebb-582f-4159-98da-52eb8b829cbd" name="Changes" comment="Test database working">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_routes.py" afterDir="false" />
+    <list default="true" id="cdba0ebb-582f-4159-98da-52eb8b829cbd" name="Changes" comment="Add requirements.txt">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +229,7 @@
       <option name="presentableId" value="Default" />
       <updated>1714239959508</updated>
       <workItem from="1714239960974" duration="4959000" />
-      <workItem from="1714294038588" duration="6955000" />
+      <workItem from="1714294038588" duration="7105000" />
     </task>
     <task id="LOCAL-00001" summary="Remove router file was unecessary">
       <option name="closed" value="true" />
@@ -329,7 +327,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714300513717</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Fix test database and start with some test data">
+      <option name="closed" value="true" />
+      <created>1714301069963</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1714301069963</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Add requirements.txt">
+      <option name="closed" value="true" />
+      <created>1714301185010</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1714301185010</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,11 +374,13 @@
     <MESSAGE value="update persons tag" />
     <MESSAGE value="Working database" />
     <MESSAGE value="Test database working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test database working" />
+    <MESSAGE value="Fix test database and start with some test data" />
+    <MESSAGE value="Add requirements.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add requirements.txt" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/fast_api_project$pytest_in_test_routes_py.coverage" NAME="pytest in test_routes.py Coverage Results" MODIFIED="1714295352701" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/fast_api_project$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1714301026510" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/fast_api_project$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1714301180630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/fast_api_project$run.coverage" NAME="run Coverage Results" MODIFIED="1714297297623" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fast_api_project$pytest_for_test_routes_TestPersonsRoot_test_get.coverage" NAME="pytest for test_routes.TestPersonsRoot.test_get Coverage Results" MODIFIED="1714299765448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/fast_api_project$Run_with_reload.coverage" NAME="Run with reload Coverage Results" MODIFIED="1714300414214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\chris\OneDrive\Desktop\python\fast_api_project" />
