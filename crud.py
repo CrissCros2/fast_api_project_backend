@@ -21,8 +21,7 @@ class CRUD(ABC):
 
     @classmethod
     def update(cls, db: Session, row_id: UUID, column_to_update, new_value):
-        pass
-        # raise NotImplementedError
+        raise NotImplementedError
 
     @classmethod
     def delete_by_id(cls, db: Session, row_id: UUID):
