@@ -1,34 +1,13 @@
-from abc import ABC
 from uuid import UUID, uuid4
+from datetime import datetime
 
 from sqlalchemy.orm import Session
 
-from db_models import PersonTable
+from db_models import PersonTable, EventTable
+from api_models import Person
 
 
-class CRUD(ABC):
-    """
-    Base class for all CRUD operations a different class is created for each table at runtime
-    """
-
-    @classmethod
-    def create(cls, db: Session, row_to_add):
-        raise NotImplementedError
-
-    @classmethod
-    def read_by_id(cls, db: Session, row_id: UUID):
-        raise NotImplementedError
-
-    @classmethod
-    def update(cls, db: Session, row_id: UUID, column_to_update, new_value):
-        raise NotImplementedError
-
-    @classmethod
-    def delete_by_id(cls, db: Session, row_id: UUID):
-        raise NotImplementedError
-
-
-class PersonCRUD(CRUD):
+class PersonCRUD:
     """
     Person CRUD operations
     """
@@ -58,4 +37,53 @@ class PersonCRUD(CRUD):
             # noinspection PyTypeChecker
             db.query(PersonTable).filter(PersonTable.id == row_id).delete()
             return db_person
+        return None
+
+
+class EventCRUD:
+    """
+    Event CRUD operations
+    """
+
+    @classmethod
+    def create_without_persons(
+        cls, db: Session, event_id: UUID, title: str, desc: str, time: datetime
+    ):
+        db_event = EventTable(id=event_id, title=title, description=desc, time=time)
+        db.add(db_event)
+        db.commit()
+        return db_event
+
+    @classmethod
+    def create_with_persons(
+        cls, db: Session, title: str, desc: str, time: datetime, persons: list[Person]
+    ):
+        db_event = EventTable(id=uuid4(), title=title, description=desc, time=time)
+        for person in persons:
+            # noinspection PyTypeChecker
+            new_person = (
+                db.query(PersonTable).filter(PersonTable.id == person.id).first()
+            )
+            db_event.persons.append(new_person)
+            db.add(new_person)
+        db.add(db_event)
+        db.commit()
+
+    @classmethod
+    def read_by_id(cls, db: Session, row_id: UUID):
+        # noinspection PyTypeChecker
+        return db.query(EventTable).filter(EventTable.id == row_id).first()
+
+    @classmethod
+    def get_all_events(cls, db: Session):
+        return db.query(EventTable).all()
+
+    @classmethod
+    def delete_by_id(cls, db: Session, row_id: UUID):
+        # noinspection PyTypeChecker
+        db_event = db.query(EventTable).filter(EventTable.id == row_id).first()
+        if db_event:
+            # noinspection PyTypeChecker
+            db.query(EventTable).filter(EventTable.id == row_id).delete()
+            return db_event
         return None

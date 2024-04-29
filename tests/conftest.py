@@ -1,3 +1,4 @@
+from datetime import datetime
 from uuid import UUID
 
 import pytest
@@ -8,7 +9,7 @@ from sqlalchemy.pool import StaticPool
 
 from db import get_db
 from db import sessionmaker, Base
-from db_models import PersonTable
+from db_models import PersonTable, EventTable
 from v0.main import app
 
 
@@ -47,8 +48,15 @@ def add_person(db_session: Session):
     db_person2 = PersonTable(
         id=UUID("cb6d5a97-d871-4bac-8fe8-a117ea3fd9de"), name="Person2"
     )
+    db_event = EventTable(
+        id=UUID("f531c403-2fb4-4de9-8b4d-848462adb6cc"),
+        title="blah",
+        description="blah",
+        time=datetime.now(),
+    )
     db_session.add(db_person1)
     db_session.add(db_person2)
+    db_session.add(db_event)
     db_session.commit()
 
     def get_session():

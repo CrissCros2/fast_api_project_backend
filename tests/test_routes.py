@@ -4,7 +4,7 @@ from uuid import uuid4, UUID
 
 from fastapi import status
 
-from api_models import Person
+from api_models import Person, Event
 
 
 class RoutesTest(ABC):
@@ -18,6 +18,7 @@ class RoutesTest(ABC):
         status.HTTP_406_NOT_ACCEPTABLE,
         status.HTTP_401_UNAUTHORIZED,
         status.HTTP_403_FORBIDDEN,
+        status.HTTP_422_UNPROCESSABLE_ENTITY,
     }
 
     route: str = NotImplemented
@@ -87,17 +88,25 @@ class TestEventsRoot(RoutesTest):
         assert response.json()
         assert response.status_code is status.HTTP_200_OK
 
+
+class TestCreateEventWithoutPersons(RoutesTest):
+    route = "/events/create_no_persons"
+
     def test_post(self, client):
         data = {
             "id": uuid4().hex,
             "title": "blah",
             "description": "blah",
             "time": str(datetime.now()),
-            "attendees": [],
         }
         response = client.post(self.route, json=data)
-        assert response.json()
         assert response.status_code is status.HTTP_201_CREATED
+        event = Event(**response.json())
+        assert event.id == UUID(data["id"])
+        assert event.title == data["title"]
+        assert event.description == data["description"]
+        assert str(event.time) == data["time"]
+        assert event.attendees == []
 
 
 class TestEventsByID(RoutesTest):

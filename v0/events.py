@@ -1,37 +1,47 @@
 from datetime import datetime
 from uuid import uuid4, UUID
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from starlette import status
+from sqlalchemy.orm import Session
 
-from api_models import Event
+from api_models import Event, Person
+from crud import EventCRUD
+from db import get_db
 
 events = APIRouter()
 
 
 @events.get("/")
-async def get_all_events() -> list[Event]:
+async def get_all_events(db: Session = Depends(get_db)) -> list[Event]:
     """
     Access the database and get the list of all events
     """
-    # For now returns a single event
-    return [
-        Event(
-            id=uuid4(),
-            title="blah",
-            description="blah",
-            time=datetime.now(),
-            attendees=[],
-        )
-    ]
+    return EventCRUD.get_all_events(db)
 
 
-@events.post("/", status_code=status.HTTP_201_CREATED)
-async def create_event(event: Event) -> Event:
+@events.post("/create_no_persons", status_code=status.HTTP_201_CREATED)
+async def create_event_without_persons(
+    event: Event, db: Session = Depends(get_db)
+) -> Event:
     """
     Create event in database
     """
-    return event
+    return EventCRUD.create_without_persons(
+        db, event.id, event.title, event.description, event.time
+    )
+
+
+@events.post("/create_with_persons", status_code=status.HTTP_201_CREATED)
+async def create_event_with_persons(
+    event: Event, persons: list[Person], db: Session = Depends(get_db)
+) -> Event:
+    """
+    Create event in database
+    """
+    return EventCRUD.create_with_persons(
+        db, event.title, event.description, event.time, persons
+    )
 
 
 @events.get("/{event_id}")
