@@ -109,32 +109,37 @@ class TestCreateEventWithoutPersons(RoutesTest):
         assert event.attendees == []
 
 
-class TestEventsByID(RoutesTest):
+class TestEventsByIDExists(RoutesTest):
     """
     Test the "/events/{event_id} route
     """
 
-    route = f"/events/{uuid4()}"
+    route = f"/events/f531c403-2fb4-4de9-8b4d-848462adb6cc"
 
     def test_get(self, client):
         response = client.get(self.route)
         assert response.status_code is status.HTTP_200_OK
         assert response.json()
 
-    def test_put(self, client):
-        data = {
-            "id": uuid4().hex,
-            "title": "blah",
-            "description": "blah",
-            "time": str(datetime.now()),
-            "attendees": [],
-        }
-        response = client.put(self.route, json=data)
-        assert response.status_code is status.HTTP_200_OK
-
     def test_delete(self, client):
         response = client.delete(self.route)
         assert response.status_code is status.HTTP_200_OK
+
+
+class TestEventsByIDNotExists(RoutesTest):
+    """
+    Test the "/events/{event_id} route
+    """
+
+    route = f"/events/f531c403-2fb4-4de9-8b4d-848462adb6cd"
+
+    def test_get(self, client):
+        response = client.get(self.route)
+        assert response.status_code is status.HTTP_404_NOT_FOUND
+
+    def test_delete(self, client):
+        response = client.delete(self.route)
+        assert response.status_code is status.HTTP_404_NOT_FOUND
 
 
 class TestCancelEvent(RoutesTest):

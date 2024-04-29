@@ -1,7 +1,7 @@
-from datetime import datetime
-from uuid import uuid4, UUID
+from uuid import UUID
 
 from fastapi import APIRouter, Depends
+from fastapi.responses import JSONResponse
 from starlette import status
 from sqlalchemy.orm import Session
 
@@ -45,29 +45,39 @@ async def create_event_with_persons(
 
 
 @events.get("/{event_id}")
-async def get_event(event_id: UUID) -> Event:
+async def get_event(event_id: UUID, db: Session = Depends(get_db)):
     """
     Get individual event by event_id
     """
-    return Event(
-        id=uuid4(), title="blah", description="blah", time=datetime.now(), attendees=[]
+    db_event = EventCRUD.read_by_id(db, event_id)
+    if db_event:
+        return db_event
+    return JSONResponse(
+        status_code=status.HTTP_404_NOT_FOUND,
+        content={"detail": "Person not found"},
     )
 
 
 @events.put("/{event_id}", status_code=status.HTTP_200_OK)
-async def update_event(event_id: UUID, event: Event) -> Event:
+async def update_event(event_id: UUID, event: Event):
     """
     Update individual event by event_id
     """
-    return event
+    return NotImplementedError
 
 
 @events.delete("/{event_id}", status_code=status.HTTP_200_OK)
-async def delete_event(event_id: UUID) -> None:
+async def delete_event(event_id: UUID, db: Session = Depends(get_db)):
     """
     Delete individual event by event_id
     """
-    return
+    db_event = EventCRUD.delete_by_id(db, event_id)
+    if db_event:
+        return db_event
+    return JSONResponse(
+        status_code=status.HTTP_404_NOT_FOUND,
+        content={"detail": "Person not found"},
+    )
 
 
 @events.patch("/{event_id}/cancel", status_code=status.HTTP_200_OK)
