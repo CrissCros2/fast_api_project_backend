@@ -16,5 +16,5 @@ class Event(BaseModel):
     title: str
     description: str = ""
     time: datetime
-    attendees: list[Person] = []
+    persons: list[Person] = []
     cancelled: bool = False

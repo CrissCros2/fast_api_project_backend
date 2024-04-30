@@ -32,15 +32,24 @@ async def create_event_without_persons(
     )
 
 
-@events.post("/create_with_persons", status_code=status.HTTP_201_CREATED)
+@events.post(
+    "/create_with_persons", status_code=status.HTTP_201_CREATED, response_model=Event
+)
 async def create_event_with_persons(
     event: Event, persons: list[Person], db: Session = Depends(get_db)
-) -> Event:
+):
     """
     Create event in database
     """
-    return EventCRUD.create_with_persons(
+    EventCRUD.create_with_persons(
         db, event.title, event.description, event.time, persons
+    )
+    return Event(
+        id=event.id,
+        title=event.title,
+        description=event.description,
+        time=event.time,
+        persons=persons,
     )
 
 

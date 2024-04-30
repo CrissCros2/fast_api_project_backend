@@ -3,7 +3,7 @@ from datetime import datetime
 
 from sqlalchemy.orm import Session
 
-from db_models import PersonTable, EventTable
+from db_models import PersonTable, EventTable, EventPersonAssociation
 from api_models import Person
 
 
@@ -64,10 +64,14 @@ class EventCRUD:
             new_person = (
                 db.query(PersonTable).filter(PersonTable.id == person.id).first()
             )
-            db_event.persons.append(new_person)
-            db.add(new_person)
+            new_association = EventPersonAssociation(
+                event_id=db_event.id, person_id=new_person.id
+            )
+            db.add(new_association)
+
         db.add(db_event)
         db.commit()
+        return db_event
 
     @classmethod
     def read_by_id(cls, db: Session, row_id: UUID):

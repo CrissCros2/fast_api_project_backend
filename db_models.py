@@ -7,18 +7,18 @@ from db import Base
 # To model many-to-many relationships use link table
 class EventPersonAssociation(Base):
     __tablename__ = "eventpersonassociation"
-    event_id = Column(UUID, ForeignKey("events.id"), primary_key=True)
-    attendee_id = Column(UUID, ForeignKey("persons.id"), primary_key=True)
+    event_id = Column(UUID(as_uuid=True), ForeignKey("events.id"), primary_key=True)
+    person_id = Column(UUID(as_uuid=True), ForeignKey("persons.id"), primary_key=True)
 
     event = relationship("EventTable", back_populates="persons")
-    person = relationship("PersonTable", back_populates="event")
+    person = relationship("PersonTable", back_populates="events")
 
 
 # Events table
 class EventTable(Base):
     __tablename__ = "events"
 
-    id = Column(UUID, primary_key=True, index=True)
+    id = Column(UUID(as_uuid=True), primary_key=True, index=True)
     title = Column(String, index=True)
     description = Column(String, index=True)
     time = Column(DateTime)
@@ -29,6 +29,6 @@ class EventTable(Base):
 class PersonTable(Base):
     __tablename__ = "persons"
 
-    id = Column(UUID, primary_key=True, index=True)
+    id = Column(UUID(as_uuid=True), primary_key=True, index=True)
     name = Column(String, index=True)
-    event = relationship("EventPersonAssociation", back_populates="person")
+    events = relationship("EventPersonAssociation", back_populates="person")

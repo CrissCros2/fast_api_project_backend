@@ -70,8 +70,7 @@ class TestPersonsRoot(RoutesTest):
         assert response.json()
 
     def test_post(self, client):
-        data = {"name": "blah"}
-        response = client.post(f"{self.route}?person_name=chris", json=data)
+        response = client.post(f"{self.route}?person_name=chris")
         assert response.json()
         assert response.status_code is status.HTTP_201_CREATED
 
@@ -106,7 +105,33 @@ class TestCreateEventWithoutPersons(RoutesTest):
         assert event.title == data["title"]
         assert event.description == data["description"]
         assert str(event.time) == data["time"]
-        assert event.attendees == []
+        assert event.persons == []
+
+
+class TestCreateEventWithPersons(RoutesTest):
+    route = "/events/create_with_persons"
+
+    def test_post(self, client):
+        data = {
+            "event": {
+                "id": uuid4().hex,
+                "title": "blah",
+                "description": "blah",
+                "time": str(datetime.now()),
+            },
+            "persons": [
+                {"id": "cb6d5a97-d871-4bac-8fe8-a117ea3fd9de", "name": "Person2"}
+            ],
+        }
+        response = client.post(self.route, json=data)
+        assert response.status_code is status.HTTP_201_CREATED
+        event = Event(**response.json())
+        person = Person(**data["persons"][0])
+        assert event.id == UUID(data["event"]["id"])
+        assert event.title == data["event"]["title"]
+        assert event.description == data["event"]["description"]
+        assert str(event.time) == data["event"]["time"]
+        assert event.persons == [person]
 
 
 class TestEventsByIDExists(RoutesTest):
