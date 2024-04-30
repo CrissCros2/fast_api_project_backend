@@ -112,7 +112,7 @@ class TestCreateEventWithPersons(RoutesTest):
     route = "/events/create_with_persons"
 
     def test_post(self, client):
-        data = {
+        data_good = {
             "event": {
                 "id": uuid4().hex,
                 "title": "blah",
@@ -123,15 +123,28 @@ class TestCreateEventWithPersons(RoutesTest):
                 {"id": "cb6d5a97-d871-4bac-8fe8-a117ea3fd9de", "name": "Person2"}
             ],
         }
-        response = client.post(self.route, json=data)
-        assert response.status_code is status.HTTP_201_CREATED
-        event = Event(**response.json())
-        person = Person(**data["persons"][0])
-        assert event.id == UUID(data["event"]["id"])
-        assert event.title == data["event"]["title"]
-        assert event.description == data["event"]["description"]
-        assert str(event.time) == data["event"]["time"]
+        data_bad = {
+            "event": {
+                "id": uuid4().hex,
+                "title": "blah",
+                "description": "blah",
+                "time": str(datetime.now()),
+            },
+            "persons": [
+                {"id": "db6d5a97-d871-4bac-8fe8-a117ea3fd9de", "name": "Person2"}
+            ],
+        }
+        response_good = client.post(self.route, json=data_good)
+        assert response_good.status_code is status.HTTP_201_CREATED
+        event = Event(**response_good.json())
+        person = Person(**data_good["persons"][0])
+        assert event.id == UUID(data_good["event"]["id"])
+        assert event.title == data_good["event"]["title"]
+        assert event.description == data_good["event"]["description"]
+        assert str(event.time) == data_good["event"]["time"]
         assert event.persons == [person]
+        response_bad = client.post(self.route, json=data_bad)
+        assert response_bad.status_code is status.HTTP_404_NOT_FOUND
 
 
 class TestEventsByIDExists(RoutesTest):
@@ -151,12 +164,25 @@ class TestEventsByIDExists(RoutesTest):
         assert response.status_code is status.HTTP_200_OK
 
 
+class TestAddPeopleToEvent(RoutesTest):
+    """
+    Test the "/events/{event_id}/add_persons route
+    """
+
+    route = f"/events/f531c403-2fb4-4de9-8b4d-848462adb6cc/add_persons"
+
+    def test_put(self, client):
+        data = ["e1a0bcb9-6827-41bf-9888-fbed5dc9e9bb"]
+        response = client.put(self.route, json=data)
+        assert response.status_code is status.HTTP_200_OK
+
+
 class TestEventsByIDNotExists(RoutesTest):
     """
     Test the "/events/{event_id} route
     """
 
-    route = f"/events/f531c403-2fb4-4de9-8b4d-848462adb6cd"
+    route = f"/events/f531c403-2fb4-4de9-8b4d-848462adb6ce"
 
     def test_get(self, client):
         response = client.get(self.route)

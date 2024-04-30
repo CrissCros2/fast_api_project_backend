@@ -11,6 +11,7 @@ from db import get_db
 from db import sessionmaker, Base
 from db_models import PersonTable, EventTable
 from v0.main import app
+from crud import EventCRUD
 
 
 @pytest.fixture(scope="session")
@@ -54,10 +55,19 @@ def add_person(db_session: Session):
         description="blah",
         time=datetime.now(),
     )
+    db_event2 = EventTable(
+        id=UUID("f531c403-2fb4-4de9-8b4d-848462adb6cd"),
+        title="blah",
+        description="blah",
+        time=datetime.now(),
+    )
     db_session.add(db_person1)
     db_session.add(db_person2)
     db_session.add(db_event)
+    db_session.add(db_event2)
     db_session.commit()
+
+    EventCRUD.add_people_to_event(db_session, [db_person1.id], db_event2.id)
 
     def get_session():
         try:

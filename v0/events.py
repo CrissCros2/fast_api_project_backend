@@ -13,11 +13,23 @@ events = APIRouter()
 
 
 @events.get("/")
-async def get_all_events(db: Session = Depends(get_db)) -> list[Event]:
+async def get_all_events(db: Session = Depends(get_db)):
     """
     Access the database and get the list of all events
     """
-    return EventCRUD.get_all_events(db)
+    events_list: list[Event] = []
+    db_events = EventCRUD.get_all_events(db)
+    for db_event in db_events:
+        events_list.append(
+            Event(
+                id=db_event.id,
+                title=db_event.title,
+                description=db_event.description,
+                time=db_event.time,
+                persons=EventCRUD.get_persons_from_event(db, db_event.id),
+            )
+        )
+    return events_list
 
 
 @events.post("/create_no_persons", status_code=status.HTTP_201_CREATED)
@@ -41,9 +53,14 @@ async def create_event_with_persons(
     """
     Create event in database
     """
-    EventCRUD.create_with_persons(
+    result = EventCRUD.create_with_persons(
         db, event.title, event.description, event.time, persons
     )
+    if result is None:
+        return JSONResponse(
+            status_code=status.HTTP_404_NOT_FOUND,
+            content={"detail": "Person not found"},
+        )
     return Event(
         id=event.id,
         title=event.title,
@@ -72,7 +89,17 @@ async def update_event(event_id: UUID, event: Event):
     """
     Update individual event by event_id
     """
-    return NotImplementedError
+    raise NotImplementedError
+
+
+@events.put("/{event_id}/add_persons", status_code=status.HTTP_200_OK)
+async def add_persons_to_event(
+    event_id: UUID, person_ids: list[UUID], db: Session = Depends(get_db)
+):
+    """
+    Add people to event by event_id
+    """
+    return EventCRUD.add_people_to_event(db, person_ids, event_id)
 
 
 @events.delete("/{event_id}", status_code=status.HTTP_200_OK)

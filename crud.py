@@ -64,11 +64,32 @@ class EventCRUD:
             new_person = (
                 db.query(PersonTable).filter(PersonTable.id == person.id).first()
             )
+            if new_person is None:
+                return
             new_association = EventPersonAssociation(
                 event_id=db_event.id, person_id=new_person.id
             )
             db.add(new_association)
 
+        db.add(db_event)
+        db.commit()
+        return db_event
+
+    @classmethod
+    def add_people_to_event(cls, db: Session, person_ids: list[UUID], event_id: UUID):
+        # noinspection PyTypeChecker
+        db_event = db.query(EventTable).filter(EventTable.id == event_id).first()
+        for person_id in person_ids:
+            # noinspection PyTypeChecker
+            new_person = (
+                db.query(PersonTable).filter(PersonTable.id == person_id).first()
+            )
+            if new_person is None:
+                return
+            new_association = EventPersonAssociation(
+                event_id=db_event.id, person_id=new_person.id
+            )
+            db.add(new_association)
         db.add(db_event)
         db.commit()
         return db_event
@@ -91,3 +112,12 @@ class EventCRUD:
             db.query(EventTable).filter(EventTable.id == row_id).delete()
             return db_event
         return None
+
+    @classmethod
+    def get_persons_from_event(cls, db: Session, row_id: UUID):
+        # noinspection PyTypeChecker
+        db_event = db.query(EventTable).filter(EventTable.id == row_id).first()
+        if not db_event:
+            return None
+        test = [relation.person for relation in db_event.persons]
+        return [relation.person for relation in db_event.persons]
