@@ -98,12 +98,29 @@ async def delete_event(event_id: UUID, db: Session = Depends(get_db)):
     )
 
 
-@events.patch("/{event_id}/cancel", status_code=status.HTTP_200_OK)
-async def flip_cancel_event(event_id: UUID) -> None:
+@events.patch(
+    "/{event_id}/cancel", status_code=status.HTTP_200_OK, response_model=Event
+)
+async def flip_cancel_event(event_id: UUID, db: Session = Depends(get_db)):
     """
     Cancel or un-cancel an event
     """
-    return
+    db_event = EventCRUD.read_by_id(db, event_id)
+    if not db_event:
+        return JSONResponse(
+            status_code=status.HTTP_404_NOT_FOUND,
+            content={"detail": "Event not found"},
+        )
+    updated_event = Event(
+        id=db_event.id,
+        title=db_event.title,
+        description=db_event.description,
+        time=db_event.time,
+        persons=db_event.persons,
+        cancelled=not db_event.cancelled,
+    )
+    db_event = EventCRUD.update_event(db, updated_event)
+    return db_event
 
 
 @events.get("/{event_id}/persons", status_code=status.HTTP_200_OK)
@@ -118,3 +135,25 @@ async def get_persons_event(event_id: UUID, db: Session = Depends(get_db)):
             content={"detail": "Event not found"},
         )
     return db_persons
+
+
+@events.patch("/{event_id}", status_code=status.HTTP_200_OK, response_model=Event)
+async def update_event(event_id: UUID, event: Event, db: Session = Depends(get_db)):
+    """
+    Update an event
+    """
+    updated_event = Event(
+        id=event_id,
+        title=event.title,
+        description=event.description,
+        time=event.time,
+        persons=event.persons,
+        cancelled=event.cancelled,
+    )
+    db_event = EventCRUD.update_event(db, updated_event)
+    if not db_event:
+        return JSONResponse(
+            status_code=status.HTTP_404_NOT_FOUND,
+            content={"detail": "Event not found"},
+        )
+    return db_event

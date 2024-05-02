@@ -163,6 +163,22 @@ class TestEventsByIDExists(RoutesTest):
         response = client.delete(self.route)
         assert response.status_code is status.HTTP_200_OK
 
+    def test_patch(self, client):
+        data = {
+            "id": "f531c403-2fb4-4de9-8b4d-848462adb6cc",
+            "title": "blah",
+            "description": "blah",
+            "time": str(datetime.now()),
+        }
+        response = client.patch(self.route, json=data)
+        assert response.status_code is status.HTTP_200_OK
+        event = Event(**response.json())
+        assert event.id == UUID(data["id"])
+        assert event.title == data["title"]
+        assert event.description == data["description"]
+        assert str(event.time) == data["time"]
+        assert event.persons == []
+
 
 class TestAddPeopleToEvent(RoutesTest):
     """
@@ -195,17 +211,47 @@ class TestEventsByIDNotExists(RoutesTest):
         response = client.delete(self.route)
         assert response.status_code is status.HTTP_404_NOT_FOUND
 
+    def test_patch(self, client):
+        data = {
+            "id": "f531c403-2fb4-4de9-8b4d-848462adb6cc",
+            "title": "blah",
+            "description": "blah",
+            "time": str(datetime.now()),
+        }
+        response = client.patch(self.route, json=data)
+        assert response.status_code is status.HTTP_404_NOT_FOUND
 
-class TestCancelEvent(RoutesTest):
+
+class TestCancelEventExists(RoutesTest):
     """
     Test "/events/{event_id}/cancel" route
     """
 
-    route = f"/events/{uuid4()}/cancel"
+    route = f"/events/f531c403-2fb4-4de9-8b4d-848462adb6cc/cancel"
 
     def test_patch(self, client):
         response = client.patch(self.route)
         assert response.status_code is status.HTTP_200_OK
+        event = Event(**response.json())
+        assert event.id == UUID("f531c403-2fb4-4de9-8b4d-848462adb6cc")
+        assert event.cancelled is True
+        response = client.patch(self.route)
+        assert response.status_code is status.HTTP_200_OK
+        event = Event(**response.json())
+        assert event.id == UUID("f531c403-2fb4-4de9-8b4d-848462adb6cc")
+        assert event.cancelled is False
+
+
+class TestCancelEventNoExists(RoutesTest):
+    """
+    Test "/events/{event_id}/cancel" route
+    """
+
+    route = f"/events/f531c403-2fb4-4de9-8b4d-848462adb6ce/cancel"
+
+    def test_patch(self, client):
+        response = client.patch(self.route)
+        assert response.status_code is status.HTTP_404_NOT_FOUND
 
 
 class TestPersonByIDExists(RoutesTest):

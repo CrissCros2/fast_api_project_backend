@@ -127,3 +127,16 @@ class EventCRUD:
         if not db_event:
             return None
         return [relation.person for relation in db_event.persons]
+
+    @classmethod
+    def update_event(cls, db: Session, event: Event):
+        # noinspection PyTypeChecker
+        db_event = db.query(EventTable).filter(EventTable.id == event.id).first()
+        if db_event:
+            db_event.title = event.title
+            db_event.description = event.description
+            db_event.time = event.time
+            db_event.cancelled = event.cancelled
+            db.commit()
+            return db_event
+        return None
