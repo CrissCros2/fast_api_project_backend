@@ -75,7 +75,13 @@ async def add_persons_to_event(
     """
     Add people to event by event_id
     """
-    return EventCRUD.add_people_to_event(db, person_ids, event_id)
+    db_event = EventCRUD.add_people_to_event(db, person_ids, event_id)
+    if db_event:
+        return db_event
+    return JSONResponse(
+        status_code=status.HTTP_404_NOT_FOUND,
+        content={"detail": "Person not found"},
+    )
 
 
 @events.delete("/{event_id}", status_code=status.HTTP_200_OK)
@@ -98,3 +104,17 @@ async def flip_cancel_event(event_id: UUID) -> None:
     Cancel or un-cancel an event
     """
     return
+
+
+@events.get("/{event_id}/persons", status_code=status.HTTP_200_OK)
+async def get_persons_event(event_id: UUID, db: Session = Depends(get_db)):
+    """
+    Get all persons associated with an event
+    """
+    db_persons = EventCRUD.get_persons_from_event(db, event_id)
+    if not db_persons:
+        return JSONResponse(
+            status_code=status.HTTP_404_NOT_FOUND,
+            content={"detail": "Event not found"},
+        )
+    return db_persons

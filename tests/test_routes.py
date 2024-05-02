@@ -159,9 +159,12 @@ class TestAddPeopleToEvent(RoutesTest):
     route = f"/events/f531c403-2fb4-4de9-8b4d-848462adb6cc/add_persons"
 
     def test_put(self, client):
-        data = ["e1a0bcb9-6827-41bf-9888-fbed5dc9e9bb"]
-        response = client.put(self.route, json=data)
-        assert response.status_code is status.HTTP_200_OK
+        data_good = ["e1a0bcb9-6827-41bf-9888-fbed5dc9e9bb"]
+        data_bad = ["e1a0bcb9-6827-41bf-9888-fbed5dc9e9be"]
+        response_good = client.put(self.route, json=data_good)
+        response_bad = client.put(self.route, json=data_bad)
+        assert response_good.status_code is status.HTTP_200_OK
+        assert response_bad.status_code is status.HTTP_404_NOT_FOUND
 
 
 class TestEventsByIDNotExists(RoutesTest):
@@ -221,3 +224,15 @@ class TestPersonByIDNotExists(RoutesTest):
     def test_delete(self, client):
         response = client.delete(self.route)
         assert response.status_code is status.HTTP_404_NOT_FOUND
+
+
+class TestGetPersonsEvent(RoutesTest):
+
+    route = f"/events/f531c403-2fb4-4de9-8b4d-848462adb6cd/persons"
+
+    def test_get(self, client):
+        response_good = client.get(self.route)
+        response_bad = client.get(f"/events/{uuid4()}/persons")
+        assert response_bad.status_code is status.HTTP_404_NOT_FOUND
+        assert response_good.status_code is status.HTTP_200_OK
+        assert response_good.json()

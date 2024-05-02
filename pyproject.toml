@@ -11,7 +11,8 @@ description = "Test project for fast api learning"
 omit = [
     "tests/*",
     "run.py",
-    "db.py",
+    "db/database.py",
+    "db/db_models.py"
 ]
 
 [tool.coverage.report]
