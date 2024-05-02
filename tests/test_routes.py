@@ -44,6 +44,19 @@ class RoutesTest(ABC):
         assert response.status_code in self.not_allowed_responses
 
 
+class TestHealth(RoutesTest):
+    """
+    Test the "/health" route
+    """
+
+    route = "/health"
+
+    def test_get(self, client):
+        response = client.get(self.route)
+        assert response.status_code is status.HTTP_200_OK
+        assert response.json() == {"status": "ok"}
+
+
 class TestRoot(RoutesTest):
     """
     Test the "/" route redirects to docs

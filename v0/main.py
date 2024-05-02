@@ -18,3 +18,11 @@ async def root():
     Redirects the user to the docs page
     """
     return RedirectResponse(url="/docs")
+
+
+@app.get("/health")
+async def health():
+    """
+    Health check endpoint
+    """
+    return {"status": "ok"}
