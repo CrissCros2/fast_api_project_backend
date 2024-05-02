@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String, DateTime, UUID, ForeignKey
 from sqlalchemy.orm import relationship
 
-from db import Base
+from db.database import Base
 
 
 # To model many-to-many relationships use link table

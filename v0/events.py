@@ -5,9 +5,9 @@ from fastapi.responses import JSONResponse
 from starlette import status
 from sqlalchemy.orm import Session
 
-from api_models import Event, Person
-from crud import EventCRUD
-from db import get_db
+from api_models import Event
+from db.crud import EventCRUD
+from db.database import get_db
 
 events = APIRouter()
 
@@ -32,30 +32,14 @@ async def get_all_events(db: Session = Depends(get_db)):
     return events_list
 
 
-@events.post("/create_no_persons", status_code=status.HTTP_201_CREATED)
-async def create_event_without_persons(
-    event: Event, db: Session = Depends(get_db)
-) -> Event:
+@events.post("/", status_code=status.HTTP_201_CREATED, response_model=Event)
+async def create_event(event: Event, db: Session = Depends(get_db)):
     """
     Create event in database
     """
-    return EventCRUD.create_without_persons(
-        db, event.id, event.title, event.description, event.time
-    )
-
-
-@events.post(
-    "/create_with_persons", status_code=status.HTTP_201_CREATED, response_model=Event
-)
-async def create_event_with_persons(
-    event: Event, persons: list[Person], db: Session = Depends(get_db)
-):
-    """
-    Create event in database
-    """
-    result = EventCRUD.create_with_persons(
-        db, event.title, event.description, event.time, persons
-    )
+    if not event.persons:
+        return EventCRUD.create(db, event)
+    result = EventCRUD.create(db, event)
     if result is None:
         return JSONResponse(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -66,7 +50,7 @@ async def create_event_with_persons(
         title=event.title,
         description=event.description,
         time=event.time,
-        persons=persons,
+        persons=event.persons,
     )
 
 
@@ -82,14 +66,6 @@ async def get_event(event_id: UUID, db: Session = Depends(get_db)):
         status_code=status.HTTP_404_NOT_FOUND,
         content={"detail": "Person not found"},
     )
-
-
-@events.put("/{event_id}", status_code=status.HTTP_200_OK)
-async def update_event(event_id: UUID, event: Event):
-    """
-    Update individual event by event_id
-    """
-    raise NotImplementedError
 
 
 @events.put("/{event_id}/add_persons", status_code=status.HTTP_200_OK)

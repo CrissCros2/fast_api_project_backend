@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 
-from db import engine, Base
+from db.database import engine, Base
 from v0.events import events as events_router
 from v0.persons import persons as persons_router
 

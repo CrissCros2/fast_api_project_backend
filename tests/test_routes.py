@@ -87,10 +87,6 @@ class TestEventsRoot(RoutesTest):
         assert response.json()
         assert response.status_code is status.HTTP_200_OK
 
-
-class TestCreateEventWithoutPersons(RoutesTest):
-    route = "/events/create_no_persons"
-
     def test_post(self, client):
         data = {
             "id": uuid4().hex,
@@ -107,41 +103,32 @@ class TestCreateEventWithoutPersons(RoutesTest):
         assert str(event.time) == data["time"]
         assert event.persons == []
 
-
-class TestCreateEventWithPersons(RoutesTest):
-    route = "/events/create_with_persons"
-
-    def test_post(self, client):
         data_good = {
-            "event": {
-                "id": uuid4().hex,
-                "title": "blah",
-                "description": "blah",
-                "time": str(datetime.now()),
-            },
+            "id": uuid4().hex,
+            "title": "blah",
+            "description": "blah",
             "persons": [
                 {"id": "cb6d5a97-d871-4bac-8fe8-a117ea3fd9de", "name": "Person2"}
             ],
+            "time": str(datetime.now()),
         }
         data_bad = {
-            "event": {
-                "id": uuid4().hex,
-                "title": "blah",
-                "description": "blah",
-                "time": str(datetime.now()),
-            },
+            "id": uuid4().hex,
+            "title": "blah",
+            "description": "blah",
             "persons": [
                 {"id": "db6d5a97-d871-4bac-8fe8-a117ea3fd9de", "name": "Person2"}
             ],
+            "time": str(datetime.now()),
         }
         response_good = client.post(self.route, json=data_good)
         assert response_good.status_code is status.HTTP_201_CREATED
         event = Event(**response_good.json())
         person = Person(**data_good["persons"][0])
-        assert event.id == UUID(data_good["event"]["id"])
-        assert event.title == data_good["event"]["title"]
-        assert event.description == data_good["event"]["description"]
-        assert str(event.time) == data_good["event"]["time"]
+        assert event.id == UUID(data_good["id"])
+        assert event.title == data_good["title"]
+        assert event.description == data_good["description"]
+        assert str(event.time) == data_good["time"]
         assert event.persons == [person]
         response_bad = client.post(self.route, json=data_bad)
         assert response_bad.status_code is status.HTTP_404_NOT_FOUND

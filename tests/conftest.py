@@ -7,11 +7,11 @@ from sqlalchemy import create_engine, Engine
 from sqlalchemy.orm import Session
 from sqlalchemy.pool import StaticPool
 
-from db import get_db
-from db import sessionmaker, Base
-from db_models import PersonTable, EventTable
+from db.database import get_db
+from db.database import sessionmaker, Base
+from db.db_models import PersonTable, EventTable
 from v0.main import app
-from crud import EventCRUD
+from db.crud import EventCRUD
 
 
 @pytest.fixture(scope="session")

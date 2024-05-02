@@ -6,8 +6,8 @@ from sqlalchemy.orm import Session
 from starlette import status
 
 from api_models import Person
-from crud import PersonCRUD
-from db import get_db
+from db.crud import PersonCRUD
+from db.database import get_db
 
 persons = APIRouter()
 
