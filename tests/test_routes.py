@@ -152,7 +152,7 @@ class TestEventsByIDExists(RoutesTest):
     Test the "/events/{event_id} route
     """
 
-    route = f"/events/f531c403-2fb4-4de9-8b4d-848462adb6cc"
+    route = "/events/f531c403-2fb4-4de9-8b4d-848462adb6cc"
 
     def test_get(self, client):
         response = client.get(self.route)
@@ -185,7 +185,7 @@ class TestAddPeopleToEvent(RoutesTest):
     Test the "/events/{event_id}/add_persons route
     """
 
-    route = f"/events/f531c403-2fb4-4de9-8b4d-848462adb6cc/add_persons"
+    route = "/events/f531c403-2fb4-4de9-8b4d-848462adb6cc/add_persons"
 
     def test_put(self, client):
         data_good = ["e1a0bcb9-6827-41bf-9888-fbed5dc9e9bb"]
@@ -201,7 +201,7 @@ class TestEventsByIDNotExists(RoutesTest):
     Test the "/events/{event_id} route
     """
 
-    route = f"/events/f531c403-2fb4-4de9-8b4d-848462adb6ce"
+    route = "/events/f531c403-2fb4-4de9-8b4d-848462adb6ce"
 
     def test_get(self, client):
         response = client.get(self.route)
@@ -227,7 +227,7 @@ class TestCancelEventExists(RoutesTest):
     Test "/events/{event_id}/cancel" route
     """
 
-    route = f"/events/f531c403-2fb4-4de9-8b4d-848462adb6cc/cancel"
+    route = "/events/f531c403-2fb4-4de9-8b4d-848462adb6cc/cancel"
 
     def test_patch(self, client):
         response = client.patch(self.route)
@@ -247,7 +247,7 @@ class TestCancelEventNoExists(RoutesTest):
     Test "/events/{event_id}/cancel" route
     """
 
-    route = f"/events/f531c403-2fb4-4de9-8b4d-848462adb6ce/cancel"
+    route = "/events/f531c403-2fb4-4de9-8b4d-848462adb6ce/cancel"
 
     def test_patch(self, client):
         response = client.patch(self.route)
@@ -287,7 +287,7 @@ class TestPersonByIDNotExists(RoutesTest):
 
 class TestGetPersonsEvent(RoutesTest):
 
-    route = f"/events/f531c403-2fb4-4de9-8b4d-848462adb6cd/persons"
+    route = "/events/f531c403-2fb4-4de9-8b4d-848462adb6cd/persons"
 
     def test_get(self, client):
         response_good = client.get(self.route)
